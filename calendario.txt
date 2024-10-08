@@ -1,0 +1,53 @@
+January 1 - 7: asdada
+January 8 - 14: das
+January 15 - 21: dasdsadas
+January 22 - 28: dsadasdas
+January 29 - February 4: dsadsa
+February 5 - 11: sadas
+February 12 - 18: asdada
+February 19 - 25: das
+February 26 - March 3: dasdsadas
+March 4 - 10: dsadasdas
+March 11 - 17: dsadsa
+March 18 - 24: sadas
+March 25 - 31: asdada
+April 1 - 7: das
+April 8 - 14: dasdsadas
+April 15 - 21: dsadasdas
+April 22 - 28: dsadsa
+April 29 - May 5: sadas
+May 6 - 12: asdada
+May 13 - 19: das
+May 20 - 26: dasdsadas
+May 27 - June 2: dsadasdas
+June 3 - 9: dsadsa
+June 10 - 16: sadas
+June 17 - 23: asdada
+June 24 - 30: das
+July 1 - 7: dasdsadas
+July 8 - 14: dsadasdas
+July 15 - 21: dsadsa
+July 22 - 28: sadas
+July 29 - August 4: asdada
+August 5 - 11: das
+August 12 - 18: dasdsadas
+August 19 - 25: dsadasdas
+August 26 - September 1: dsadsa
+September 2 - 8: sadas
+September 9 - 15: asdada
+September 16 - 22: das
+September 23 - 29: dasdsadas
+September 30 - October 6: dsadasdas
+October 7 - 13: dsadsa
+October 14 - 20: sadas
+October 21 - 27: asdada
+October 28 - November 3: das
+November 4 - 10: dasdsadas
+November 11 - 17: dsadasdas
+November 18 - 24: dsadsa
+November 25 - December 1: sadas
+December 2 - 8: asdada
+December 9 - 15: das
+December 16 - 22: dasdsadas
+December 23 - 29: dsadasdas
+December 30 - 31: dsadsa

@@ -36,27 +36,72 @@ notebook.pack(expand=True, fill="both")
 
 # Declaração das funções
 
-def open_form():
+def open_add_form():
     form_window = tk.Toplevel(root)
     form_window.title("Form")
-    form_window.geometry("300x200")
+    form_window.geometry("600x400")
+    
+    info_label_tab1.config(text="")
+    error_label_tab1.config(text="") 
     
     icon_path = os.path.join(os.path.dirname(__file__), 'formimage.ico')
     form_window.iconbitmap(icon_path)
     
-    tk.Label(form_window, text="Nome:", font=("Arial", 12)).pack(pady=5)
-    name_entry = tk.Entry(form_window, font=("Arial", 12))
+    tk.Label(form_window, text="Nome:", font=formFont).pack(pady=5)
+    name_entry = tk.Entry(form_window, font=formFont)
     name_entry.pack(pady=5)
 
-    tk.Label(form_window, text="Email:", font=("Arial", 12)).pack(pady=5)
-    email_entry = tk.Entry(form_window, font=("Arial", 12))
+    tk.Label(form_window, text="Email:", font=formFont).pack(pady=5)
+    email_entry = tk.Entry(form_window, font=formFont)
     email_entry.pack(pady=5)
     
-    submit_button = tk.Button(form_window, text="Adicionar", font=("Arial", 12), command=lambda: submit_form(name_entry.get(), email_entry.get()))
+    tk.Label(form_window, text="Data de Atualização:", font=formFont).pack(pady=5)
+    date_entry = DateEntry(form_window, width=12, background='darkblue', foreground='white', borderwidth=2, year=2024)
+    date_entry.pack(pady=5)
+    
+    
+    submit_button = tk.Button(form_window, text="Adicionar", font=formFont, command=lambda: submit_add_form(name_entry.get(), email_entry.get(), form_window))
     submit_button.pack(pady=20)
 
-def submit_form(name, email):
-    print(f"Name: {name}, Email: {email}")
+def open_remove_form():
+    form_window = tk.Toplevel(root)
+    form_window.title("Form")
+    form_window.geometry("600x400")
+    
+    info_label_tab1.config(text="")
+    error_label_tab1.config(text="") 
+    
+    icon_path = os.path.join(os.path.dirname(__file__), 'formimage.ico')
+    form_window.iconbitmap(icon_path)
+    
+    tk.Label(form_window, text="Nome:", font=formFont).pack(pady=5)
+    name_entry = tk.Entry(form_window, font=formFont)
+    name_entry.pack(pady=5)
+    
+    submit_button = tk.Button(form_window, text="Remover", font=formFont, command=lambda: submit_remove_form(name_entry.get(), form_window))
+    submit_button.pack(pady=20)
+
+def submit_add_form(name, email, form_window):
+    new_employee = name
+    if new_employee:
+        error_message = empresa.adicionarFuncionario(new_employee)
+        if error_message:
+            error_label_tab1.config(text=error_message)
+        else:
+            info_label_tab1.config(text=f"Adicionado: {new_employee}")
+            error_label_tab1.config(text="") 
+    form_window.destroy() 
+
+def submit_remove_form(name, form_window):
+    employee_to_remove = name
+    if employee_to_remove:
+        error_message = empresa.retirarFuncionario(employee_to_remove)
+        if error_message:
+            error_label_tab1.config(text=error_message)  
+        else:
+            info_label_tab1.config(text=f"Removido: {employee_to_remove}")
+            error_label_tab1.config(text="")
+    form_window.destroy()
 
 def view_calendar():
     error_message = empresa.preencherCalendario()
@@ -66,28 +111,6 @@ def view_calendar():
         calendar_text.delete(1.0, tk.END)
         for week in empresa.calendario:
             calendar_text.insert(tk.END, f"{week}\n")
-
-def add_employee():
-    new_employee = new_employee_entry.get()
-    if new_employee:
-        error_message = empresa.adicionarFuncionario(new_employee)
-        if error_message:
-            error_label.config(text=error_message)  # Show error message
-        else:
-            label.config(text=f"Adicionado: {new_employee}")
-            error_label.config(text="")  # Clear any previous error 
-            new_employee_entry.delete(0, tk.END)  # Clear the entry field
-
-def remove_employee():
-    employee_to_remove = remove_employee_entry.get()
-    if employee_to_remove:
-        error_message = empresa.retirarFuncionario(employee_to_remove)
-        if error_message:
-            error_label.config(text=error_message)  
-        else:
-            label.config(text=f"Removido: {employee_to_remove}")
-            error_label.config(text="") 
-            remove_employee_entry.delete(0, tk.END) 
 
 
 def create_simple_calendar_pdf():
@@ -191,16 +214,25 @@ def create_simple_calendar_pdf():
     label.config(text = f"PDF '{pdf_file}'")
 
 # Declaração de fontes
-titleFont = ("Arial", 20)
+titleFont = ("Arial", 26)
+errorFont = ("Arial", 25)
+infoFont = ("Arial", 20)
+formFont = ("Arial", 12)
 
 # Tab 1 - Manutenção
 title_tab1 = tk.Label(tab1, text="Manutenção de Funcionários", font=titleFont, bg="lightblue")
 title_tab1.pack(padx=20, pady=20)
 
-button_new_employ = tk.Button(tab1, text="Adicionar Funcionário", command=open_form)
+error_label_tab1 = tk.Label(tab1, text="", font=errorFont, bg='lightblue', fg='red')
+error_label_tab1.pack(padx=20, pady=10)
+
+info_label_tab1 = tk.Label(tab1, text="", font=infoFont, bg='lightblue', fg='yellow')
+info_label_tab1.pack(padx=20, pady=10)
+
+button_new_employ = tk.Button(tab1, text="Adicionar Funcionário", command=open_add_form)
 button_new_employ.pack(padx=30, pady=40)
 
-button_remove_employ = tk.Button(tab1, text="Remover Funcionário")
+button_remove_employ = tk.Button(tab1, text="Remover Funcionário", command=open_remove_form)
 button_remove_employ.pack(padx=60, pady=40)
 
 #Tab 2 - Notificação
